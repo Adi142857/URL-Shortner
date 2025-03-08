@@ -11,6 +11,7 @@ import java.sql.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "short_url")
 public class ShortUrlEntity {
 
     @Id
