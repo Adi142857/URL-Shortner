@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.Optional;
 
 @Service
@@ -37,6 +38,8 @@ public class ShortUrlServiceImpl implements ShortUrlService {
                 shortUrlEntity.setOriginalUrl(originalUrl);
                 shortUrlEntity.setShortCode(shortCode.substring(0, MAX_SHORT_CODE_LENGTH));
                 shortUrlEntity.setAccessCount(0);
+                shortUrlEntity.setCreatedAt(new Date());
+                shortUrlEntity.setUpdatedAt(new Date());
                 shortUrlRepository.save(shortUrlEntity);
             }
 
@@ -57,6 +60,7 @@ public class ShortUrlServiceImpl implements ShortUrlService {
                 logger.info("Retrieved original url for short code {} is {}", shortCode, shortUrlEntity);
                 if(null!=shortUrlEntity) {
                     shortUrlEntity.setAccessCount(shortUrlEntity.getAccessCount()+1);
+                    shortUrlEntity.setUpdatedAt(new Date());
                     shortUrlRepository.save(shortUrlEntity);
                     return shortUrlEntity.getOriginalUrl();
                 }
@@ -76,6 +80,7 @@ public class ShortUrlServiceImpl implements ShortUrlService {
                 shortUrlEntity = shortUrlRepository.findByShortCode(shortCode);
                 if(null!=shortUrlEntity) {
                     shortUrlEntity.setOriginalUrl(newOriginalUrl);
+                    shortUrlEntity.setUpdatedAt(new Date());
                     shortUrlRepository.save(shortUrlEntity);
                     return true;
                 }
