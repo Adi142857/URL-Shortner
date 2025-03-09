@@ -19,19 +19,19 @@ public class ShortUrlEntity {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "shortCode")
+    @Column(name = "short_code")
     private String shortCode;
 
-    @Column(name = "originalUrl")
+    @Column(name = "original_url")
     private String originalUrl;
 
-    @Column(name = "createdAt")
+    @Column(name = "created_at")
     private Date createdAt;
 
-    @Column(name = "accessCount")
+    @Column(name = "access_count")
     private int accessCount = 0;
 
-    @Column(name = "updatedAt")
+    @Column(name = "updated_at")
     private Date updatedAt;
 
 }
