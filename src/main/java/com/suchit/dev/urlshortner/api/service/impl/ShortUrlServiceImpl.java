@@ -8,6 +8,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.util.Arrays;
+import java.util.Base64;
 import java.util.Date;
 import java.util.Optional;
 
@@ -33,7 +37,10 @@ public class ShortUrlServiceImpl implements ShortUrlService {
                     return shortUrlEntity.getShortCode();
                 }
                 logger.info("Original url does not have short code. Generating new short code");
-                shortCode = String.valueOf(Math.abs(originalUrl.hashCode()));
+                MessageDigest md = MessageDigest.getInstance("MD5");
+                md.update(originalUrl.getBytes());
+                byte[] digest = md.digest();
+                shortCode = Base64.getUrlEncoder().withoutPadding().encodeToString(digest).substring(0, 7);
                 shortUrlEntity = new ShortUrlEntity();
                 shortUrlEntity.setOriginalUrl(originalUrl);
                 shortUrlEntity.setShortCode(shortCode.substring(0, MAX_SHORT_CODE_LENGTH));
