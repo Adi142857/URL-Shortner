@@ -1,0 +1,17 @@
+{
+  "properties": [
+    {
+      "name": "app.short-base-url",
+      "type": "java.lang.String",
+      "description": "Base URL used when building public short links.",
+      "sourceType": "com.suchit.dev.urlshortner.config.AppProperties"
+    },
+    {
+      "name": "app.cors.allowed-origins",
+      "type": "java.lang.String",
+      "description": "Comma-separated list of allowed CORS origins.",
+      "sourceType": "com.suchit.dev.urlshortner.config.AppProperties"
+    }
+  ]
+}
+

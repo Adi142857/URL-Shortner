@@ -31,3 +31,14 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Frontend build artifacts
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/.env.local
+frontend/.env
+
+# Local tooling cache
+.npm-cache/
+.m2/

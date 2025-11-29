@@ -1,14 +1,13 @@
 package com.suchit.dev.urlshortner;
 
+import com.suchit.dev.urlshortner.config.AppProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
-@ComponentScan(value = "com.*")
-@EnableJpaRepositories(value = "com.*")
+@EnableConfigurationProperties(AppProperties.class)
 @EnableScheduling
 public class UrlShortnerApplication {
 

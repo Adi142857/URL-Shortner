@@ -1,12 +1,14 @@
 package com.suchit.dev.urlshortner.api.service;
 
-import java.util.Optional;
+import com.suchit.dev.urlshortner.api.entity.ShortUrlEntity;
+
+import java.util.List;
 
 public interface ShortUrlService {
-    String createOrGetShortenUrl(String originalUrl);
-    String getOriginalUrl(String shortCode);
-    boolean updateShortUrl(String shortCode, String newOriginalUrl);
-    boolean deleteShortUrl(String shortCode);
-
-
+    ShortUrlEntity createShortUrl(String originalUrl, String customAlias);
+    ShortUrlEntity getShortUrlByCode(String shortCode);
+    ShortUrlEntity updateShortUrl(String shortCode, String newOriginalUrl);
+    void deleteShortUrl(String shortCode);
+    String resolveShortCode(String shortCode);
+    List<ShortUrlEntity> getRecentShortUrls(int limit);
 }

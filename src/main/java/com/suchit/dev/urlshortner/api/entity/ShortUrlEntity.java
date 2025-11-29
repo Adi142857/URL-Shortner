@@ -19,19 +19,32 @@ public class ShortUrlEntity {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "short_code")
+    @Column(name = "short_code", nullable = false, unique = true, length = 32)
     private String shortCode;
 
-    @Column(name = "original_url")
+    @Column(name = "original_url", nullable = false, columnDefinition = "TEXT")
     private String originalUrl;
 
-    @Column(name = "created_at")
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at", nullable = false)
     private Date createdAt;
 
     @Column(name = "access_count")
     private int accessCount = 0;
 
-    @Column(name = "updated_at")
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "updated_at", nullable = false)
     private Date updatedAt;
 
+    @PrePersist
+    public void onCreate() {
+        Date now = new Date();
+        this.createdAt = now;
+        this.updatedAt = now;
+    }
+
+    @PreUpdate
+    public void onUpdate() {
+        this.updatedAt = new Date();
+    }
 }
