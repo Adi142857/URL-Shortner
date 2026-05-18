@@ -9,4 +9,4 @@ RUN ./mvnw clean install -DskipTests
 
 EXPOSE 8082
 
-CMD ["java", "-jar", "target/url-shortner-0.0.1-SNAPSHOT.jar"]
+CMD sh -c "java -jar target/*.jar"
